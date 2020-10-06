@@ -1,10 +1,26 @@
-from gics.helpers import json_to_map
+import json
+
 from gics.map import Map
 
-definitions = {
-    "20140228": json_to_map("./gics/definitions/20140228.json"),
-    "20160901": json_to_map("./gics/definitions/20160901.json"),
-    "20180929": json_to_map("./gics/definitions/20180929.json"),
+try:
+    import importlib.resources as pkg_resources
+except ImportError as e:
+    print(e)
+    # Try backported to PY<37 `importlib_resources`.
+    import importlib_resources as pkg_resources
+
+from . import definitions_module
+
+
+def json_to_map(path: str):
+    f = pkg_resources.open_text(definitions_module, path)
+
+    return Map.create_recursively(json.load(f))
+
+DEFINITIONS = {
+    "20140228": json_to_map('20140228.json'),
+    "20160901": json_to_map('20160901.json'),
+    "20180929": json_to_map('20180929.json'),
 }
 
 DEFAULT_VERSION = '20180929'
@@ -46,7 +62,7 @@ class GICS:
 
     @property
     def _definition(self):
-        return definitions.get(self._definition_version)
+        return DEFINITIONS.get(self._definition_version)
 
     @property
     def is_valid(self) -> bool:

@@ -1,1 +1,1 @@
-from .gics import GICS
+from gics.gics import GICS
