@@ -2,20 +2,13 @@ import json
 
 from gics.map import Map
 
-try:
-    import importlib.resources as pkg_resources
-except ImportError as e:
-    print(e)
-    # Try backported to PY<37 `importlib_resources`.
-    import importlib_resources as pkg_resources
-
-from . import definitions_module
+import pkgutil
 
 
 def json_to_map(path: str):
-    f = pkg_resources.open_text(definitions_module, path)
+    data = pkgutil.get_data('gics.definitions', path)
 
-    return Map.create_recursively(json.load(f))
+    return Map.create_recursively(json.loads(data))
 
 DEFINITIONS = {
     "20140228": json_to_map('20140228.json'),
@@ -46,7 +39,7 @@ class GICS:
         self._definition_version = version
 
         if not self._definition:
-            raise ValueError(f'Unsupported GICS version: {version}. Available versions are {list(definitions.keys())}')
+            raise ValueError(f'Unsupported GICS version: {version}. Available versions are {list(DEFINITIONS.keys())}')
 
         self._code = code
 
