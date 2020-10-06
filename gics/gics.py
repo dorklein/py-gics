@@ -1,19 +1,12 @@
-import json
-
+from gics.definitions import d_20140228
+from gics.definitions import d_20160901
+from gics.definitions import d_20180929
 from gics.map import Map
 
-import pkgutil
-
-
-def json_to_map(path: str):
-    data = pkgutil.get_data('gics.definitions', path)
-
-    return Map.create_recursively(json.loads(data))
-
 DEFINITIONS = {
-    "20140228": json_to_map('20140228.json'),
-    "20160901": json_to_map('20160901.json'),
-    "20180929": json_to_map('20180929.json'),
+    "20140228": d_20140228,
+    "20160901": d_20160901,
+    "20180929": d_20180929,
 }
 
 DEFAULT_VERSION = '20180929'
@@ -37,9 +30,12 @@ class GICS:
             ValueError: When given an invalid version
         """
         self._definition_version = version
+        _definition = DEFINITIONS.get(self._definition_version)
 
-        if not self._definition:
+        if not _definition:
             raise ValueError(f'Unsupported GICS version: {version}. Available versions are {list(DEFINITIONS.keys())}')
+
+        self._definition = Map.create_recursively(_definition)
 
         self._code = code
 
@@ -54,8 +50,8 @@ class GICS:
             self._code = None
 
     @property
-    def _definition(self):
-        return DEFINITIONS.get(self._definition_version)
+    def definition(self):
+        return self._definition
 
     @property
     def is_valid(self) -> bool:
