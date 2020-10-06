@@ -1,6 +1,4 @@
-from gics.definitions import d_20140228
-from gics.definitions import d_20160901
-from gics.definitions import d_20180929
+from gics.definitions import d_20140228, d_20160901, d_20180929
 from gics.map import Map
 
 DEFINITIONS = {
