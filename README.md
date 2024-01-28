@@ -239,3 +239,11 @@ GICS('invalid').contains_immediate(GICS('10'))  # false
 GICS('10').contains_immediate(GICS('invalid'))  # false
 GICS('invalid').contains_immediate(GICS('invalid'))  # false
 ```
+
+
+### Publish with poetry
+```bash
+# Make sure to update the version in pyproject.toml
+poetry build
+poetry publish
+```
