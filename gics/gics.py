@@ -1,13 +1,14 @@
-from gics.definitions import d_20140228, d_20160901, d_20180929
+from gics.definitions import d_20140228, d_20160901, d_20180929, d_20230318
 from gics.map import Map
 
 DEFINITIONS = {
     "20140228": d_20140228,
     "20160901": d_20160901,
     "20180929": d_20180929,
+    "20230318": d_20230318,
 }
 
-DEFAULT_VERSION = '20180929'
+DEFAULT_VERSION = '20230318'
 
 
 class GICS:

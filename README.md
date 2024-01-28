@@ -34,7 +34,7 @@ Note that creating an empty GICS will mark it as invalid but can still be used t
 ```
 @class      GICS GICS
 @param      {string}  code     GICS code to parse. Valid GICS codes are strings 2 to 8 characters long, with even length.
-@param      {string}  version  Version of GICS definition to use. By default the latest definition is used. Versions are named after the date in which they became effective, following the format YYYYMMDD. Current available versions are: 20140228 and 20160901 and 20180929 (default).
+@param      {string}  version  Version of GICS definition to use. By default the latest definition is used. Versions are named after the date in which they became effective, following the format YYYYMMDD. Current available versions are: 20140228 and 20160901 and 20180929 and 20230318 (default).
 @throws     {Error}            Throws error if the version is invalid/unsupported.
 ```
 #### Example
