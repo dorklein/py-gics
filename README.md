@@ -1,13 +1,19 @@
 # GICS
-This library provides a way to parse, manipulate and analyze [GICS](https: #en.wikipedia.org/wiki/Global_Industry_Classification_Standard) codes. GICS (Global Industry Classification Standard) is a classification system by [MSCI](https: #www.msci.com/gics)
+This library provides a way to parse, manipulate and analyze [GICS](https://en.wikipedia.org/wiki/Global_Industry_Classification_Standard) codes. GICS (Global Industry Classification Standard) is a classification system by [MSCI](https://www.msci.com/gics)
 
 ## Installation
+
+### poetry
+```shell
+poetry add gics
+```
+### pip
 ```
 pip install gics
 ```
 ## Usage
 In practice, GICS codes are represented by strings (just as dates can be). This library provides a wrapper for the string that allows the user to manipulate and display the represented GICS code in different ways.
-To wrap a string representing a GICS code, just build a new instance of GICS passing the string as the first argument.
+To wrap a string representing a GIChttps://github.com/dorklein/py-gicsS code, just build a new instance of GICS passing the string as the first argument.
 
 ## Example
 ```python
